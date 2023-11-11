@@ -8,10 +8,11 @@ void main() {
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Your App Title',
+      title: 'Home Page',
       initialBinding: ApplicationBindings(),
-      initialRoute: AppPages.INITIAL,
+      initialRoute: AppPages.initial,
       getPages: AppPages.routes,
     ),
   );
 }
+
