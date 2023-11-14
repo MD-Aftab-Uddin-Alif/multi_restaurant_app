@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:multi_restaurant_app/package_routes.dart';
 
 class AppTheme {
   static const Color primaryColor = Color.fromARGB(255, 255, 255, 255);

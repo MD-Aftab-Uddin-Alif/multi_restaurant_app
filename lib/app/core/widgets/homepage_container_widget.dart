@@ -1,19 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:multi_restaurant_app/app/core/theme/app_theme.dart';
+import 'package:multi_restaurant_app/package_routes.dart';
 
 class HomePageContainerWidget extends StatelessWidget {
   final String label;
   final String image;
   final String route;
-  final String banner;
 
   const HomePageContainerWidget({
     super.key,
     required this.label,
     required this.image,
     required this.route,
-    required this.banner,
   });
 
   @override

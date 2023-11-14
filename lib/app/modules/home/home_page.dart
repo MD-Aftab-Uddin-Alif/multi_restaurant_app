@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:multi_restaurant_app/app/core/size/app_size.dart';
-import 'package:multi_restaurant_app/app/core/theme/app_theme.dart';
-import 'package:multi_restaurant_app/app/core/widgets/homepage_container_widget.dart';
-import 'package:multi_restaurant_app/app/routes/home_routes.dart';
-
-import 'home_controller.dart';
+import 'package:multi_restaurant_app/package_routes.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,44 +23,41 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
+            const DrawerHeader(
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
+                      backgroundColor: AppTheme.primaryColor,
                       radius: 45,
-                      child: CircleAvatar(
-                        backgroundColor: AppTheme.primaryColor,
-                        backgroundImage: AssetImage(
-                          'assets/images/logos/farmer.png',
+                      child: Image(
+                        fit: BoxFit
+                            .cover, // You can use BoxFit.contain, BoxFit.fill, etc.
+                        image: AssetImage(
+                          'assets/logo/nstu.png',
                         ),
-                        radius: 60,
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 20,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Obx(
-                          () => const Text(
-                            'name',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        Text(
+                          'Arman Ahmed',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Obx(
-                          () => const Text(
-                            'email',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        Text(
+                          'armar@gmail.com',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
@@ -98,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                   // );
                 }),
             ListTile(
-                leading: const Icon(Icons.comment_bank),
+                leading: const Icon(Icons.shopping_cart_checkout),
                 title: const Text('Order History'),
                 onTap: () {
                   // Navigator.of(context).push(
@@ -138,7 +128,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       appBar: AppBar(
-        title: const Text('Home Page'), 
+        title: const Text('Home Page'),
         centerTitle: true,
         backgroundColor: AppTheme.secondaryColor,
       ),
@@ -187,7 +177,6 @@ class _HomePageState extends State<HomePage> {
                             label: 'Restaurant',
                             image: 'assets/logo/nstu.png',
                             route: HomeRoutes.home,
-                            banner: '',
                           ),
                         ],
                       ),
@@ -202,11 +191,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      
-      
-      
-      
-    
     );
   }
 }

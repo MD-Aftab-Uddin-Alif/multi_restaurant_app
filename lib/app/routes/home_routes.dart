@@ -1,7 +1,4 @@
-import 'package:get/get.dart';
-
-import '../modules/home/home_binding.dart';
-import '../modules/home/home_page.dart';
+import 'package:multi_restaurant_app/package_routes.dart';
 
 class HomeRoutes {
   HomeRoutes._();

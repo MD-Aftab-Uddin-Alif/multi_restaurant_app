@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:multi_restaurant_app/package_routes.dart';
 
 class AppSize {
   static final double screenHeight = Get.context!.height;

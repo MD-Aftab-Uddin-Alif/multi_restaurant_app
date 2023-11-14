@@ -1,5 +1,4 @@
-import 'package:get/get.dart';
-import 'package:multi_restaurant_app/app/modules/home/home_controller.dart';
+import 'package:multi_restaurant_app/package_routes.dart';
 
 class ApplicationBindings extends Bindings {
   @override
