@@ -10,9 +10,13 @@ class DP {
   }
 
   //? Ex. 'User input: $userInput' grey color
-  static void debug(String msg, String functionName) {
+  static void debug(
+    String msg,
+    String functionName, {
+    bool forcePrint = false,
+  }) {
     try {
-      if (AppConstant.isDebugging) {
+      if (AppConstant.isAllDebugging || AppConstant.isDebugging || forcePrint) {
         Logger().d(functionName, error: msg);
         if (AppConstant.showLog) {
           log(msg);
@@ -25,9 +29,13 @@ class DP {
   }
 
   //? Ex. 'User logged in successfully' blue color
-  static void status(String msg, String functionName) {
+  static void status(
+    String msg,
+    String functionName, {
+    bool forcePrint = false,
+  }) {
     try {
-      if (AppConstant.isStatus) {
+      if (AppConstant.isAllDebugging || AppConstant.isStatus || forcePrint) {
         Logger().t(functionName, error: msg);
       }
     } catch (e) {
@@ -69,24 +77,19 @@ class DP {
     }
   }
 
-  static void dPrintRxListValues<T>(dynamic list) {
+  static void listValues<T>(dynamic list, {bool forcePrint = false}) {
     //do not delete it's need to be modified
     try {
-      if (AppConstant.isDebuggingList && AppConstant.isDebugging) {
+      if (AppConstant.isDebuggingList && AppConstant.isDebugging ||
+          AppConstant.isAllDebugging) {
         for (var object in list) {
           // Convert the map to a JSON string
           var jsonString = json.encode(object.toJson());
-          if (AppConstant.showLog) {
-          } else {
-            print(jsonString);
-          }
+          print(jsonString);
         }
       }
     } catch (e) {
-      if (AppConstant.showLog) {
-      } else {
-        print('${e.toString()} in dPrintRxListValues');
-      }
+      print('${e.toString()} in listValues');
     }
   }
 }
@@ -110,7 +113,7 @@ void dPrint(String msg) {
   }
 }
 
-void dPrintRxListValues<T>(dynamic list) {
+void dPrintRxListValues<T>(dynamic list, {bool forcePrint = false}) {
   //do not delete it's need to be modified
   try {
     if (AppConstant.isDebuggingList && AppConstant.isDebugging) {

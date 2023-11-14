@@ -1,22 +1,27 @@
 import 'package:multi_restaurant_app/package_routes.dart';
 
-class HomePageContainerWidget extends StatelessWidget {
-  final String label;
-  final String image;
+class CategoryPageContainerWidget extends StatefulWidget {
+  final dynamic restaurant;
   final String route;
 
-  const HomePageContainerWidget({
+  const CategoryPageContainerWidget({
     super.key,
-    required this.label,
-    required this.image,
+    required this.restaurant,
     required this.route,
   });
 
   @override
+  State<CategoryPageContainerWidget> createState() =>
+      _CategoryPageContainerWidgetState();
+}
+
+class _CategoryPageContainerWidgetState
+    extends State<CategoryPageContainerWidget> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(route);
+        Get.toNamed(widget.route);
       },
       child: Container(
         height: 150,
@@ -40,18 +45,26 @@ class HomePageContainerWidget extends StatelessWidget {
               height: 70,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage(
-                      image,
+                    image: NetworkImage(
+                      ApiUrl.baseURL + widget.restaurant.image,
                     ),
                     fit: BoxFit.fill),
               ),
             ),
             Text(
-              label,
+              widget.restaurant.name,
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              widget.restaurant.address,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 12,
+                color: AppTheme.secondaryColor,
               ),
             ),
           ],

@@ -1,5 +1,6 @@
 import 'package:multi_restaurant_app/package_routes.dart';
 
+
 class AppPages {
   AppPages._();
 
@@ -7,5 +8,6 @@ class AppPages {
 
   static final routes = [
     ...HomeRoutes.routes,
+    ...CategoryRoutes.routes,
   ];
 }

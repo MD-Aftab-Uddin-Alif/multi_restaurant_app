@@ -8,10 +8,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  int currentIndex = 0;
+
   HomeController homeCtrl = Get.find();
 
   @override
-  void initState() {
+  initState() {
+    var passedIndex = Get.arguments;
+    if (passedIndex != null) {
+      currentIndex = passedIndex;
+      passedIndex = null;
+    }
     homeCtrl.init();
     super.initState();
   }
@@ -19,177 +27,38 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            const DrawerHeader(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: AppTheme.primaryColor,
-                      radius: 45,
-                      child: Image(
-                        fit: BoxFit
-                            .cover, // You can use BoxFit.contain, BoxFit.fill, etc.
-                        image: AssetImage(
-                          'assets/logo/nstu.png',
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Arman Ahmed',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          'armar@gmail.com',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Home'),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const HomePage(),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text('Personal Details'),
-                onTap: () {
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) => const PersonalDetailsPage(),
-                  //   ),
-                  // );
-                }),
-            ListTile(
-                leading: const Icon(Icons.shopping_cart_checkout),
-                title: const Text('Order History'),
-                onTap: () {
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) => const BankDetailsPage(),
-                  //   ),
-                  // );
-                }),
-            ListTile(
-              leading: const Icon(Icons.policy),
-              title: const Text('Terms & Condition'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.app_registration),
-              title: const Text('SignUp'),
-              onTap: () {
-                // Navigator.of(context).push(
-                //   MaterialPageRoute(
-                //     builder: (context) => const SignUpPage(),
-                //   ),
-                // );
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.login),
-              title: const Text('SignIn'),
-              onTap: () {
-                // Navigator.of(context).push(
-                //   MaterialPageRoute(
-                //     builder: (context) => const SignInPage(),
-                //   ),
-                // );
-              },
-            ),
-          ],
-        ),
+      body: IndexedStack(
+        index: currentIndex,
+        children: const [
+          CategoryPage(),
+        ],
       ),
-      appBar: AppBar(
-        title: const Text('Home Page'),
-        centerTitle: true,
+      // * Add a bottom navigation bar
+      bottomNavigationBar: BottomNavigationBar(
         backgroundColor: AppTheme.secondaryColor,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                const Text(
-                  'Restaurant',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 27,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Spacer(),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'View all',
-                    style: TextStyle(
-                      fontSize: AppSize.fFourteen,
-                      color: AppTheme.secondaryColor,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: AppSize.screenHeight * 0.25,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 5,
-                    child: Container(
-                      width: AppSize.screenHeight * 0.18,
-                      color: AppTheme.secondaryColor.withOpacity(0.2),
-                      child: const Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          HomePageContainerWidget(
-                            label: 'Restaurant',
-                            image: 'assets/logo/nstu.png',
-                            route: HomeRoutes.home,
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-          ],
-        ),
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.home_outlined),
+            label: "Home".tr,
+            activeIcon: const Icon(Icons.home),
+          ),
+          
+        
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.more_vert_outlined),
+            label: "More".tr,
+            activeIcon: const Icon(Icons.more_vert),
+          ),
+        ],
       ),
     );
   }
