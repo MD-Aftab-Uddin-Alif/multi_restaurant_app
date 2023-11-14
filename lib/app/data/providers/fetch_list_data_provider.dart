@@ -19,7 +19,7 @@ Future<void> fetchListDataProvider({
       final status = responseData['status'];
       final message = responseData['message'];
 
-      DP.status('$listFor Data Fetched', functionName,
+      DP.status('Response Received for $listFor', functionName,
           forcePrint: AppConstant.isAllDebugging || forcePrint);
       DP.debug('$listFor Data Fetched,  ${response.body}}', functionName,
           forcePrint: AppConstant.isAllDebugging || forcePrint);

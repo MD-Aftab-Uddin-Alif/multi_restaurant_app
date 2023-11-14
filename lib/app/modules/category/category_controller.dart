@@ -1,7 +1,7 @@
 import 'package:multi_restaurant_app/package_routes.dart';
 
 class CategoryController extends GetxController {
-  bool printRestaurant = true; // ? this is for debugging purpose
+  bool printRestaurant = false; // ? this is for debugging purpose
   dynamic lastFetchedData;
   RxBool isCategoryLoading = false.obs;
 

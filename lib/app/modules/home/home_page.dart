@@ -1,3 +1,4 @@
+import 'package:multi_restaurant_app/app/modules/more/more_page.dart';
 import 'package:multi_restaurant_app/package_routes.dart';
 
 class HomePage extends StatefulWidget {
@@ -31,6 +32,7 @@ class _HomePageState extends State<HomePage> {
         index: currentIndex,
         children: const [
           CategoryPage(),
+          MorePage(),
         ],
       ),
       // * Add a bottom navigation bar
@@ -45,18 +47,18 @@ class _HomePageState extends State<HomePage> {
             currentIndex = index;
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.home_outlined),
-            label: "Home".tr,
-            activeIcon: const Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: "Home",
+            activeIcon: Icon(Icons.home),
           ),
           
         
           BottomNavigationBarItem(
-            icon: const Icon(Icons.more_vert_outlined),
-            label: "More".tr,
-            activeIcon: const Icon(Icons.more_vert),
+            icon: Icon(Icons.more_vert_outlined),
+            label: "More",
+            activeIcon: Icon(Icons.more_vert),
           ),
         ],
       ),
