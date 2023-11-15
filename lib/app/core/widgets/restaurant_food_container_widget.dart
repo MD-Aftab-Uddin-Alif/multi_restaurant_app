@@ -40,15 +40,16 @@ class _RestaurantFoodContainerWidgetState
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              width: 70,
+            SizedBox(
+              width: 90,
               height: 70,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(
-                      ApiUrl.baseURL + widget.restaurantFood.image,
-                    ),
-                    fit: BoxFit.fill),
+              child: FadeInImage.assetNetwork(
+                placeholder: 'assets/logo/loading.gif',
+                image: ApiUrl.baseURL + widget.restaurantFood.image,
+                fit: BoxFit.contain,
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Image.asset('assets/logo/nstu.png');
+                },
               ),
             ),
             Text(
@@ -60,7 +61,7 @@ class _RestaurantFoodContainerWidgetState
               ),
             ),
             Text(
-              widget.restaurantFood.details,
+              widget.restaurantFood.price.toString(),
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 12,

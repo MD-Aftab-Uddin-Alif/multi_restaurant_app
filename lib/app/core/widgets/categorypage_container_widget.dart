@@ -40,15 +40,16 @@ class _CategoryPageContainerWidgetState
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               width: 70,
               height: 70,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(
-                      ApiUrl.baseURL + widget.restaurant.image,
-                    ),
-                    fit: BoxFit.fill),
+              child: FadeInImage.assetNetwork(
+                placeholder: 'assets/logo/loading.gif',
+                image: ApiUrl.baseURL + widget.restaurant.image,
+                fit: BoxFit.cover,
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Image.asset('assets/logo/nstu.png');
+                },
               ),
             ),
             Text(
