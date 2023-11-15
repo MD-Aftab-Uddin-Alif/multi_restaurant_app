@@ -1,5 +1,6 @@
 import 'package:multi_restaurant_app/package_routes.dart';
 import 'more_routes.dart';
+import 'restaurant_food_routes.dart';
 
 
 class AppPages {
@@ -11,5 +12,6 @@ class AppPages {
     ...HomeRoutes.routes,
     ...CategoryRoutes.routes,
 		...MoreRoutes.routes,
+		...RestaurantFoodRoutes.routes,
   ];
 }

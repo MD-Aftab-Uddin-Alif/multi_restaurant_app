@@ -55,6 +55,13 @@ class AppSize {
   static double wThirtyFive = 35;
   static double wForty = 40;
 
+  // * Header height
+  static double headerHeight = screenHeight * 0.3;
+  static double iSliderHeight = screenHeight * 0.225;
+  static double headerContainerTopGap = screenHeight * 0.15;
+  static double headerContainerSideGap = screenWidth * 0.05;
+  static double headerInfoHeight = AppSize.screenHeight * 0.15;
+
   static var sbHTwenty = SizedBox(
     height: AppSize.hTwenty,
   );
