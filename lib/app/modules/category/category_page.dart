@@ -127,152 +127,226 @@ class _CategoryPageState extends State<CategoryPage> {
       //     ],
       //   ),
       // ),
-      appBar: AppBar(
-        // actions: [
-        //   IconButton(
-        //     icon: const Icon(Icons.favorite_border_outlined),
-        //     onPressed: () {},
-        //   ),
-        //   IconButton(
-        //     icon: const Icon(Icons.shopping_cart_outlined),
-        //     onPressed: () {},
-        //   ),
-        // ],
-        title: const Text('Home Page'),
-        centerTitle: true,
-        backgroundColor: AppTheme.secondaryColor,
-      ),
-      body: ListView(
-        children: [
-          Stack(
-            children: [
-              SizedBox(
-                width: double.infinity,
-                height: AppSize.screenHeight * 0.20,
-                child: Obx(
-                  () => homeCtrl.bannerList.isNotEmpty
-                      ? CarouselSlider.builder(
-                          unlimitedMode: true,
-                          controller: _sliderController,
-                          slideBuilder: (index) {
-                            return Container(
-                              margin: const EdgeInsets.all(0),
-                              padding: const EdgeInsets.all(0),
-                              alignment: Alignment.topCenter,
-                              child: Obx(
-                                () => categoryCtrl.isBannerLoading.value
-                                    ? const Center(
-                                        child: Image(
-                                        image: AssetImage(
-                                            'assets/images/loading.gif'),
-                                      ))
-                                    : Image.network(
-                                        ApiUrl.baseURL +
-                                            homeCtrl
-                                              .bannerList[index].image,
-                                        fit: BoxFit.fill,
-                                        height: AppSize.iSliderHeight,
-                                        width: double.infinity,
-                                      ),
-                              ),
-                            );
-                          },
-                          slideTransform: const DefaultTransform(),
-                          itemCount: homeCtrl.bannerList.length,
-                          initialPage: 0,
-                          enableAutoSlider: true,
-                        )
-                      : const Image(
-                          image: AssetImage('assets/logo/loading.gif'),
-                        ),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
+      // appBar: AppBar(
+      //   // actions: [
+      //   //   IconButton(
+      //   //     icon: const Icon(Icons.favorite_border_outlined),
+      //   //     onPressed: () {},
+      //   //   ),
+      //   //   IconButton(
+      //   //     icon: const Icon(Icons.shopping_cart_outlined),
+      //   //     onPressed: () {},
+      //   //   ),
+      //   // ],
+      //   title: const Text('Home Page'),
+      //   centerTitle: true,
+      //   backgroundColor: AppTheme.secondaryColor,
+      // ),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            floating: true,
+            pinned: true,
+            snap: false,
+            centerTitle: false,
+            backgroundColor: AppTheme.secondaryColor,
+            title: const Row(
               children: [
-                Row(
+                Column(
                   children: [
-                    const Text(
-                      'Restaurant',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontSize: 27,
-                        fontWeight: FontWeight.bold,
-                        color: AppTheme.titleColor,
-                      ),
-                    ),
-                    const Spacer(),
-                    TextButton(
-                      onPressed: () {
-                        Get.toNamed(
-                            ViewAllRestaurantFoodRoutes.viewAllRestaurantFood);
-                      },
-                      child: const Text(
-                        'View All',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: AppTheme.secondaryColor,
-                        ),
-                      ),
-
-                      // AnimatedTextKit(
-                      //   isRepeatingAnimation: true,
-                      //   repeatForever: true,
-                      //   animatedTexts: [
-                      //     ScaleAnimatedText(
-                      //       'View all',
-                      //       textStyle: TextStyle(
-                      //         fontSize: AppSize.fFourteen,
-                      //         color: AppTheme.secondaryColor,
-                      //         fontWeight: FontWeight.bold,
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                    ),
+                    CircleAvatar(
+                      radius: 25,
+                      backgroundImage: AssetImage('assets/logo/nstu.png'),
+                      backgroundColor: Colors.transparent,
+                    )
                   ],
                 ),
                 SizedBox(
-                  height: AppSize.screenHeight * 0.26,
-                  child: Obx(
-                    () => homeCtrl.restaurantList.isNotEmpty
-                        ? ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: homeCtrl.restaurantList.length,
-                            itemBuilder: (context, int index) {
-                              return Card(
-                                elevation: 3,
-                                child: Container(
-                                  width: AppSize.screenHeight * 0.20,
-                                  color:
-                                      AppTheme.secondaryColor.withOpacity(0.2),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      CategoryPageContainerWidget(
-                                        restaurant:
-                                            homeCtrl.restaurantList[index],
-                                        route:
-                                            RestaurantFoodRoutes.restaurantFood,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                          )
-                        : const Image(
-                            image: AssetImage('assets/logo/loading.gif'),
+                  width: 5,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          'Arman Ahmed',
+                          style: TextStyle(
+                            color: AppTheme.bText,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
                           ),
-                  ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'NSTU',
+                          style: TextStyle(
+                            color: AppTheme.bText,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),
+            actions: [
+              IconButton(
+                icon: const Icon(
+                  Icons.shopping_cart,
+                  color: AppTheme.bText,
+                ),
+                onPressed: () {},
+              ),
+            ],
+            bottom: AppBar(
+              backgroundColor: AppTheme.secondaryColor,
+              title: Center(
+                child: SizedBox(
+                  height: 40.0,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
+                      hintText: 'Search for something',
+                      prefixIcon: const Icon(Icons.search),
+                      fillColor: Colors.grey[200],
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              Stack(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    height: AppSize.screenHeight * 0.20,
+                    child: Obx(
+                      () => homeCtrl.bannerList.isNotEmpty
+                          ? CarouselSlider.builder(
+                              unlimitedMode: true,
+                              controller: _sliderController,
+                              slideBuilder: (index) {
+                                return Container(
+                                  margin: const EdgeInsets.all(0),
+                                  padding: const EdgeInsets.all(0),
+                                  alignment: Alignment.topCenter,
+                                  child: Obx(
+                                    () => categoryCtrl.isBannerLoading.value
+                                        ? const Center(
+                                            child: Image(
+                                            image: AssetImage(
+                                                'assets/images/loading.gif'),
+                                          ))
+                                        : Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 8.0),
+                                            child: Image.network(
+                                              ApiUrl.baseURL +
+                                                  homeCtrl
+                                                      .bannerList[index].image,
+                                              fit: BoxFit.fill,
+                                              height: AppSize.iSliderHeight,
+                                              width: double.infinity,
+                                            ),
+                                          ),
+                                  ),
+                                );
+                              },
+                              slideTransform: const DefaultTransform(),
+                              itemCount: homeCtrl.bannerList.length,
+                              initialPage: 0,
+                              enableAutoSlider: true,
+                            )
+                          : const Image(
+                              image: AssetImage('assets/logo/loading.gif'),
+                            ),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        const Text(
+                          'Restaurant',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 27,
+                            fontWeight: FontWeight.bold,
+                            color: AppTheme.titleColor,
+                          ),
+                        ),
+                        const Spacer(),
+                        TextButton(
+                          onPressed: () {
+                            Get.toNamed(ViewAllRestaurantFoodRoutes
+                                .viewAllRestaurantFood);
+                          },
+                          child: const Text(
+                            'View All',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: AppTheme.secondaryColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: AppSize.screenHeight * 0.26,
+                      child: Obx(
+                        () => homeCtrl.restaurantList.isNotEmpty
+                            ? ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: homeCtrl.restaurantList.length,
+                                itemBuilder: (context, int index) {
+                                  return Card(
+                                    elevation: 3,
+                                    child: Container(
+                                      width: AppSize.screenHeight * 0.20,
+                                      color: AppTheme.secondaryColor
+                                          .withOpacity(0.2),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          CategoryPageContainerWidget(
+                                            restaurant:
+                                                homeCtrl.restaurantList[index],
+                                            route: RestaurantFoodRoutes
+                                                .restaurantFood,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              )
+                            : const Image(
+                                image: AssetImage('assets/logo/loading.gif'),
+                              ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ]),
           ),
         ],
       ),

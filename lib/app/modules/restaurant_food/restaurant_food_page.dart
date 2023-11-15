@@ -1,6 +1,6 @@
 import 'package:multi_restaurant_app/app/core/widgets/restaurant_food_container_widget.dart';
 import 'package:multi_restaurant_app/app/modules/restaurant_food/restaurant_food_controller.dart';
-import 'package:multi_restaurant_app/app/routes/more_routes.dart';
+import 'package:multi_restaurant_app/app/routes/restaurant_food_details_routes.dart';
 import 'package:multi_restaurant_app/package_routes.dart';
 
 class RestaurantFoodPage extends StatefulWidget {
@@ -24,25 +24,30 @@ class _RestaurantFoodPageState extends State<RestaurantFoodPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(restaurantFoodCtrl.restaurant.name),
+        iconTheme: const IconThemeData(color: AppTheme.bText),
+        title: Text(
+          restaurantFoodCtrl.restaurant.name,
+          style: const TextStyle(color: AppTheme.bIcon),
+        ),
         centerTitle: true,
         backgroundColor: AppTheme.secondaryColor,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(2.0),
+        padding: EdgeInsets.all(AppSize.pTen),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            mainAxisExtent: 170,
-            crossAxisSpacing: 2,
-            mainAxisSpacing: 2,
+            crossAxisCount: 2,
+            mainAxisExtent: 230,
+            childAspectRatio: 0.8,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
           ),
           itemCount: restaurantFoodCtrl.specificRestaurantFoodListLength.value,
           itemBuilder: (BuildContext context, int index) {
             return RestaurantFoodContainerWidget(
               restaurantFood:
                   restaurantFoodCtrl.specificRestaurantFoodList[index],
-              route: MoreRoutes.more,
+              route: RestaurantFoodDetailsRoutes.restaurantFoodDetails,
             );
           },
         ),
