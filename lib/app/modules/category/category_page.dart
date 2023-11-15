@@ -1,6 +1,7 @@
 import 'package:flutter_carousel_slider/carousel_slider.dart';
-import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
-import 'package:multi_restaurant_app/app/routes/more_routes.dart';
+import 'package:multi_restaurant_app/app/modules/restaurant_food/restaurant_food_controller.dart';
+import 'package:multi_restaurant_app/app/routes/restaurant_food_routes.dart';
+import 'package:multi_restaurant_app/app/routes/view_all_restaurant_food_routes.dart';
 import 'package:multi_restaurant_app/package_routes.dart';
 
 class CategoryPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class _CategoryPageState extends State<CategoryPage> {
   CarouselSliderController? _sliderController;
   HomeController homeCtrl = Get.find();
   CategoryController categoryCtrl = Get.find();
+  RestaurantFoodController restaurantFoodCtrl = Get.find();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -140,7 +142,7 @@ class _CategoryPageState extends State<CategoryPage> {
                   width: double.infinity,
                   height: AppSize.screenHeight * 0.20,
                   child: Obx(
-                    () => homeCtrl.restaurantList.isNotEmpty
+                    () => homeCtrl.restaurantFoodList.isNotEmpty
                         ? CarouselSlider.builder(
                             unlimitedMode: true,
                             controller: _sliderController,
@@ -150,7 +152,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                 padding: const EdgeInsets.all(0),
                                 alignment: Alignment.topCenter,
                                 child: Obx(
-                                  () => categoryCtrl.isCategoryLoading.value
+                                  () => restaurantFoodCtrl
+                                          .isRestaurantFoodLoading.value
                                       ? const Center(
                                           child: Image(
                                           image: AssetImage(
@@ -161,7 +164,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                               const EdgeInsets.only(top: 8.0),
                                           child: Image.network(
                                             ApiUrl.baseURL +
-                                                homeCtrl.restaurantList[index]
+                                                homeCtrl
+                                                    .restaurantFoodList[index]
                                                     .image,
                                             fit: BoxFit.fill,
                                             height: AppSize.iSliderHeight,
@@ -200,21 +204,33 @@ class _CategoryPageState extends State<CategoryPage> {
                       ),
                       const Spacer(),
                       TextButton(
-                        onPressed: () {},
-                        child: AnimatedTextKit(
-                          isRepeatingAnimation: true,
-                          repeatForever: true,
-                          animatedTexts: [
-                            ScaleAnimatedText(
-                              'View all',
-                              textStyle: TextStyle(
-                                fontSize: AppSize.fFourteen,
-                                color: AppTheme.secondaryColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                        onPressed: () {
+                          Get.toNamed(ViewAllRestaurantFoodRoutes
+                              .viewAllRestaurantFood);
+                        },
+                        child: const Text(
+                          'View All',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: AppTheme.secondaryColor,
+                          ),
                         ),
+                        
+                        // AnimatedTextKit(
+                        //   isRepeatingAnimation: true,
+                        //   repeatForever: true,
+                        //   animatedTexts: [
+                        //     ScaleAnimatedText(
+                        //       'View all',
+                        //       textStyle: TextStyle(
+                        //         fontSize: AppSize.fFourteen,
+                        //         color: AppTheme.secondaryColor,
+                        //         fontWeight: FontWeight.bold,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ),
                     ],
                   ),
@@ -239,7 +255,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                         CategoryPageContainerWidget(
                                           restaurant:
                                               homeCtrl.restaurantList[index],
-                                          route: MoreRoutes.more,
+                                          route: RestaurantFoodRoutes
+                                              .restaurantFood,
                                         ),
                                       ],
                                     ),

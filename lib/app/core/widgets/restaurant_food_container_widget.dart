@@ -1,27 +1,27 @@
 import 'package:multi_restaurant_app/package_routes.dart';
 
-class CategoryPageContainerWidget extends StatefulWidget {
-  final dynamic restaurant;
+class RestaurantFoodContainerWidget extends StatefulWidget {
+  final dynamic restaurantFood;
   final String route;
 
-  const CategoryPageContainerWidget({
+  const RestaurantFoodContainerWidget({
     super.key,
-    required this.restaurant,
+    required this.restaurantFood,
     required this.route,
   });
 
   @override
-  State<CategoryPageContainerWidget> createState() =>
-      _CategoryPageContainerWidgetState();
+  State<RestaurantFoodContainerWidget> createState() =>
+      _RestaurantFoodContainerWidgetState();
 }
 
-class _CategoryPageContainerWidgetState
-    extends State<CategoryPageContainerWidget> {
+class _RestaurantFoodContainerWidgetState
+    extends State<RestaurantFoodContainerWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(widget.route, arguments: widget.restaurant);
+        Get.toNamed(widget.route, arguments: widget.restaurantFood);
       },
       child: Container(
         height: 150,
@@ -46,13 +46,13 @@ class _CategoryPageContainerWidgetState
               decoration: BoxDecoration(
                 image: DecorationImage(
                     image: NetworkImage(
-                      ApiUrl.baseURL + widget.restaurant.image,
+                      ApiUrl.baseURL + widget.restaurantFood.image,
                     ),
                     fit: BoxFit.fill),
               ),
             ),
             Text(
-              widget.restaurant.name,
+              widget.restaurantFood.name,
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 16,
@@ -60,7 +60,7 @@ class _CategoryPageContainerWidgetState
               ),
             ),
             Text(
-              widget.restaurant.address,
+              widget.restaurantFood.details,
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 12,

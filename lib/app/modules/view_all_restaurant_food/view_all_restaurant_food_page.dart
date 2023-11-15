@@ -1,30 +1,27 @@
 import 'package:multi_restaurant_app/app/core/widgets/restaurant_food_container_widget.dart';
-import 'package:multi_restaurant_app/app/modules/restaurant_food/restaurant_food_controller.dart';
-import 'package:multi_restaurant_app/app/routes/more_routes.dart';
 import 'package:multi_restaurant_app/package_routes.dart';
 
-class RestaurantFoodPage extends StatefulWidget {
-  const RestaurantFoodPage({super.key});
+class ViewAllRestaurantFoodPage extends StatefulWidget {
+  const ViewAllRestaurantFoodPage({super.key});
 
   @override
-  State<RestaurantFoodPage> createState() => _RestaurantFoodPageState();
+  State<ViewAllRestaurantFoodPage> createState() =>
+      _ViewAllRestaurantFoodPageState();
 }
 
-class _RestaurantFoodPageState extends State<RestaurantFoodPage> {
+class _ViewAllRestaurantFoodPageState extends State<ViewAllRestaurantFoodPage> {
   HomeController homeCtrl = Get.find();
-  RestaurantFoodController restaurantFoodCtrl = Get.find();
 
   @override
   void initState() {
-    restaurantFoodCtrl.restaurant = Get.arguments;
-    restaurantFoodCtrl.getSpecificRestaurantFoodList();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(restaurantFoodCtrl.restaurant.name),
+        title: const Text('All Food'),
         centerTitle: true,
         backgroundColor: AppTheme.secondaryColor,
       ),
@@ -37,12 +34,11 @@ class _RestaurantFoodPageState extends State<RestaurantFoodPage> {
             crossAxisSpacing: 2,
             mainAxisSpacing: 2,
           ),
-          itemCount: restaurantFoodCtrl.specificRestaurantFoodListLength.value,
+          itemCount: homeCtrl.restaurantFoodList.length,
           itemBuilder: (BuildContext context, int index) {
             return RestaurantFoodContainerWidget(
-              restaurantFood:
-                  restaurantFoodCtrl.specificRestaurantFoodList[index],
-              route: MoreRoutes.more,
+              restaurantFood: homeCtrl.restaurantFoodList[index],
+              route: 'MoreRoutes.more',
             );
           },
         ),
