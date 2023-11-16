@@ -98,46 +98,45 @@ class _RestaurantFoodDetailsPageState extends State<RestaurantFoodDetailsPage> {
       ),
       body: Column(
         children: [
-          SizedBox(
-            width: double.infinity,
-            child: Column(
-              children: [
-                ListTile(
-                  subtitle: Text(
-                    restaurantFoodDetailsCtrl.restaurantFood.name,
-                    style: const TextStyle(
-                      color: AppTheme.bText,
-                      fontSize: 30,
-                      fontWeight: FontWeight.w600,
-                    ),
+          Column(
+            children: [
+              ListTile(
+                subtitle: Text(
+                  restaurantFoodDetailsCtrl.restaurantFood.name,
+                  style: const TextStyle(
+                    color: AppTheme.bText,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-                ClipOval(
-                  child: FadeInImage.assetNetwork(
-                    placeholder: 'assets/logo/loading.gif',
-                    image: ApiUrl.baseURL +
-                        restaurantFoodDetailsCtrl.restaurantFood.image,
-                    fit: BoxFit.fill,
-                  ),
+              ),
+              ClipOval(
+                child: FadeInImage.assetNetwork(
+                  height: 200,
+                  width: 200,
+                  placeholder: 'assets/logo/loading.gif',
+                  image: ApiUrl.baseURL +
+                      restaurantFoodDetailsCtrl.restaurantFood.image,
+                  fit: BoxFit.fill,
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  width: double.infinity,
-                  child: Column(
-                    children: [
-                      Text(
-                        "Available Options: ${restaurantFoodDetailsCtrl.restaurantFood.stock}",
-                        textAlign: TextAlign.start,
-                        style: const TextStyle(
-                          color: AppTheme.bText,
-                          fontSize: 20,
-                        ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    Text(
+                      "Available Options: ${restaurantFoodDetailsCtrl.restaurantFood.stock}",
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(
+                        color: AppTheme.bText,
+                        fontSize: 20,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           Expanded(
             child: Container(
@@ -153,7 +152,7 @@ class _RestaurantFoodDetailsPageState extends State<RestaurantFoodDetailsPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Text(
                     restaurantFoodDetailsCtrl.restaurantFood.details,

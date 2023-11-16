@@ -1,4 +1,3 @@
-import 'package:multi_restaurant_app/app/modules/category/category_controller.dart';
 import 'package:multi_restaurant_app/app/modules/restaurant_food/restaurant_food_controller.dart';
 import 'package:multi_restaurant_app/app/modules/restaurant_food_details/restaurant_food_details_controller.dart';
 import 'package:multi_restaurant_app/app/modules/view_all_restaurant_food/view_all_restaurant_food_controller.dart';
