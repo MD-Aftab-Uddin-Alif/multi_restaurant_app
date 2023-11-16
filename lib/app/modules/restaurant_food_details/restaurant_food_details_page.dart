@@ -114,7 +114,7 @@ class _RestaurantFoodDetailsPageState extends State<RestaurantFoodDetailsPage> {
                 ),
                 ClipOval(
                   child: FadeInImage.assetNetwork(
-                    placeholder: 'assets/images/loading.gif',
+                    placeholder: 'assets/logo/loading.gif',
                     image: ApiUrl.baseURL +
                         restaurantFoodDetailsCtrl.restaurantFood.image,
                     fit: BoxFit.fill,

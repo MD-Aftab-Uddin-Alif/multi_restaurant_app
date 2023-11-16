@@ -67,29 +67,22 @@ class _RestaurantFoodContainerWidgetState
                       height: 120, // todo! change this
                       child: Stack(
                         children: [
-                          
-                          SizedBox(
-                            height: 120, // todo! change this
-                            child: Hero(
-                              tag:
-                                  'product${widget.restaurantFood.fId.toString()}',
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(
-                                  AppSize.rTen,
-                                ),
-                                child: FadeInImage.assetNetwork(
-                                  placeholder: 'assets/logo/loading.gif',
-                                  image: ApiUrl.baseURL +
-                                      widget.restaurantFood.image,
-                                  fit: BoxFit.contain,
-                                  imageErrorBuilder:
-                                      (context, error, stackTrace) {
-                                    return Image.asset('assets/logo/nstu.png');
-                                  },
-                                ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipOval(
+                              child: FadeInImage.assetNetwork(
+                                height: 140,
+                                width: 140,
+                                placeholder: 'assets/logo/loading.gif',
+                                image: ApiUrl.baseURL +
+                                    widget.restaurantFood.image,
+                                fit: BoxFit.fill,
                               ),
                             ),
                           ),
+
+
+                          
                         ],
                       ),
                     ),
