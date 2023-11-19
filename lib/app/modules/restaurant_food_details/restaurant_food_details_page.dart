@@ -1,3 +1,4 @@
+import 'package:multi_restaurant_app/app/core/widgets/app_bar.dart';
 import 'package:multi_restaurant_app/app/modules/restaurant_food_details/restaurant_food_details_controller.dart';
 import 'package:multi_restaurant_app/package_routes.dart';
 
@@ -62,42 +63,46 @@ class _RestaurantFoodDetailsPageState extends State<RestaurantFoodDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
-      bottomNavigationBar: Row(
-        children: [
-          bottomNavigatorBar(
-            backgroundColor: AppTheme.bText,
-            color: Colors.white70,
-            iconColor: Colors.grey,
-            title: "Add To Favorite",
-            iconData: Icons.favorite_outline,
-            // onTap: (){
+      backgroundColor: const Color(0xFFF5F5F5),
+      // bottomNavigationBar: Row(
+      //   children: [
+      //     bottomNavigatorBar(
+      //       backgroundColor: AppTheme.bText,
+      //       color: Colors.white70,
+      //       iconColor: Colors.grey,
+      //       title: "Add To Favorite",
+      //       iconData: Icons.favorite_outline,
+      //       // onTap: (){
 
-            // }
-          ),
-          bottomNavigatorBar(
-            backgroundColor: AppTheme.secondaryColor,
-            color: Colors.black,
-            iconColor: Colors.white,
-            title: "Add To Cart",
-            iconData: Icons.shopping_cart_outlined,
-            // onTap: (){
+      //       // }
+      //     ),
+      //     bottomNavigatorBar(
+      //       backgroundColor: AppTheme.secondaryColor,
+      //       color: Colors.black,
+      //       iconColor: Colors.white,
+      //       title: "Add To Cart",
+      //       iconData: Icons.shopping_cart_outlined,
+      //       // onTap: (){
 
-            // }
-          ),
-        ],
-      ),
-      appBar: AppBar(
-        backgroundColor: AppTheme.secondaryColor,
-        iconTheme: const IconThemeData(color: AppTheme.bText),
-        title: const Text(
-          "Food overview",
-          style: TextStyle(color: AppTheme.bText),
-        ),
-        centerTitle: true,
-      ),
+      //       // }
+      //     ),
+      //   ],
+      // ),
+      // appBar: AppBar(
+      //   backgroundColor: AppTheme.secondaryColor,
+      //   iconTheme: const IconThemeData(color: AppTheme.bText),
+      //   title: const Text(
+      //     "Food overview",
+      //     style: TextStyle(color: AppTheme.bText),
+      //   ),
+      //   centerTitle: true,
+      // ),
       body: Column(
         children: [
+          CustomAppBar(
+            leftIcon: Icons.arrow_back,
+            leftCallback: () => Navigator.pop(context),
+          ),
           Column(
             children: [
               ListTile(
@@ -120,8 +125,28 @@ class _RestaurantFoodDetailsPageState extends State<RestaurantFoodDetailsPage> {
                   fit: BoxFit.fill,
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildIconText(
+                    Icons.access_time_outlined,
+                    Colors.blue,
+                    '10 Min',
+                  ),
+                  _buildIconText(
+                    Icons.star_outlined,
+                    Colors.amber,
+                    '4.2',
+                  ),
+                  _buildIconText(
+                    Icons.local_fire_department_outlined,
+                    Colors.red,
+                    '110 Cal',
+                  ),
+                ],
+              ),
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 10),
+                padding: const EdgeInsets.symmetric(vertical: 15),
                 width: double.infinity,
                 child: Column(
                   children: [
@@ -129,8 +154,9 @@ class _RestaurantFoodDetailsPageState extends State<RestaurantFoodDetailsPage> {
                       "Available Options: ${restaurantFoodDetailsCtrl.restaurantFood.stock}",
                       textAlign: TextAlign.start,
                       style: const TextStyle(
-                        color: AppTheme.bText,
+                        color: AppTheme.secondaryColor,
                         fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
@@ -147,8 +173,9 @@ class _RestaurantFoodDetailsPageState extends State<RestaurantFoodDetailsPage> {
                   const Text(
                     "About This Product",
                     style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: AppTheme.bText,
                     ),
                   ),
                   const SizedBox(
@@ -165,8 +192,84 @@ class _RestaurantFoodDetailsPageState extends State<RestaurantFoodDetailsPage> {
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: [
+                    FloatingActionButton.extended(
+                      backgroundColor: AppTheme.bText,
+                      onPressed: () {},
+                      isExtended: true,
+                      label: const Row(
+                        children: [
+                          Icon(
+                            Icons.favorite_outline,
+                            color: AppTheme.secondaryColor,
+                            size: 30,
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            'Add to favorite',
+                            style: TextStyle(
+                                color: AppTheme.secondaryColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    FloatingActionButton.extended(
+                      backgroundColor: AppTheme.secondaryColor,
+                      onPressed: () {},
+                      isExtended: true,
+                      label: const Row(
+                        children: [
+                          Icon(
+                            Icons.shopping_cart_outlined,
+                            color: Colors.black,
+                            size: 30,
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            'Add to cart',
+                            style: TextStyle(
+                                color: AppTheme.bText,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )
         ],
       ),
+    );
+  }
+
+  _buildIconText(IconData icon, Color color, String text) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          color: color,
+        ),
+        Text(
+          text,
+          style: const TextStyle(
+            fontSize: 16,
+            color: AppTheme.bText,
+          ),
+        ),
+      ],
     );
   }
 }

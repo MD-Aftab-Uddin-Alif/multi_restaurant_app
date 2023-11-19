@@ -1,3 +1,4 @@
+import 'package:multi_restaurant_app/app/core/widgets/app_bar.dart';
 import 'package:multi_restaurant_app/app/core/widgets/restaurant_food_container_widget.dart';
 import 'package:multi_restaurant_app/app/modules/restaurant_food/restaurant_food_controller.dart';
 import 'package:multi_restaurant_app/app/routes/restaurant_food_details_routes.dart';
@@ -25,18 +26,22 @@ class _RestaurantFoodPageState extends State<RestaurantFoodPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
-      appBar: AppBar(
-        backgroundColor: AppTheme.secondaryColor,
-        iconTheme: const IconThemeData(color: AppTheme.bText),
-        title: const Text(
-          'Individual Restaurant Food',
-          style: TextStyle(color: AppTheme.bText),
-        ),
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: AppTheme.secondaryColor,
+      //   iconTheme: const IconThemeData(color: AppTheme.bText),
+      //   title: const Text(
+      //     'Individual Restaurant Food',
+      //     style: TextStyle(color: AppTheme.bText),
+      //   ),
+      //   centerTitle: true,
+      // ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          CustomAppBar(
+            leftIcon: Icons.arrow_back,
+            leftCallback: () => Navigator.pop(context),
+          ),
           Container(
             margin: const EdgeInsets.only(top: 40),
             padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -61,33 +66,35 @@ class _RestaurantFoodPageState extends State<RestaurantFoodPage> {
                             Container(
                                 padding: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
-                                  color: Colors.grey.withOpacity(0.4),
+                                  color: Colors.grey.withOpacity(0.9),
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: const Text(
                                   '10-20min',
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(
+                                      color: AppTheme.bText,
+                                      fontWeight: FontWeight.bold),
                                 )),
                             const SizedBox(
                               width: 10,
                             ),
-                            Text(
+                            const Text(
                               '2.4Km',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.grey.withOpacity(0.6),
+                                color: AppTheme.bText,
                               ),
                             ),
                             const SizedBox(
                               width: 10,
                             ),
-                            Text(
-                              'Food',
+                            const Text(
+                              'Restaurant',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.grey.withOpacity(0.6),
+                                color: AppTheme.bText,
                               ),
                             ),
                           ],
@@ -114,7 +121,10 @@ class _RestaurantFoodPageState extends State<RestaurantFoodPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(restaurantFoodCtrl.restaurant.address,
-                        style: const TextStyle(fontSize: 16)),
+                        style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: AppTheme.titleColor)),
                     const Row(
                       children: [
                         Icon(Icons.star_outline,
@@ -155,9 +165,22 @@ class _RestaurantFoodPageState extends State<RestaurantFoodPage> {
               ]),
             ),
           ),
+          
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        elevation: 2,
+        backgroundColor: AppTheme.secondaryColor,
+        child: const Icon(
+          Icons.shopping_cart_outlined,
+          color: Colors.black,
+          size: 30,
+        ),
+      ),
     );
+    
+
   }
 }
 

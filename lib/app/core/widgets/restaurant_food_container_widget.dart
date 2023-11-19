@@ -54,9 +54,9 @@ class _RestaurantFoodContainerWidgetState
                         Text(
                           widget.restaurantFood.name,
                           style: const TextStyle(
-                              fontSize: 16,
+                            fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              height: 1.5),
+                          ),
                         ),
                         const Icon(
                           Icons.arrow_forward_ios_outlined,
@@ -64,17 +64,13 @@ class _RestaurantFoodContainerWidgetState
                         )
                       ],
                     ),
-                    Text(
-                      widget.restaurantFood.details,
-                      style: TextStyle(color: Colors.grey.withOpacity(0.8)),
-                    ),
                     const SizedBox(
                       height: 5,
                     ),
                     Row(
                       children: [
                         Text(
-                          widget.restaurantFood.price.toString(),
+                          'Price: ${widget.restaurantFood.price}',
                           style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -88,7 +84,32 @@ class _RestaurantFoodContainerWidgetState
                           ),
                         ),
                       ],
-                    )
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Delivery fee: ${widget.restaurantFood.deliveryFee}',
+                          style: const TextStyle(
+                            color: AppTheme.secondaryColor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Text(
+                          'Taka',
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: AppTheme.secondaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    
+                    
                   ],
                 ),
               ),
