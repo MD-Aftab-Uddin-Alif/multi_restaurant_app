@@ -20,83 +20,10 @@ class _RestaurantFoodDetailsPageState extends State<RestaurantFoodDetailsPage> {
     super.initState();
   }
 
-  Widget bottomNavigatorBar({
-    required Color iconColor,
-    required Color backgroundColor,
-    required Color color,
-    required String title,
-    required IconData iconData,
-    //required Function onTap,
-  }) {
-    return Expanded(
-      child: GestureDetector(
-        //onTap: onTap,
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          color: backgroundColor,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                iconData,
-                size: 20,
-                color: iconColor,
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              Text(
-                title,
-                style: TextStyle(
-                  color: color,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
-      // bottomNavigationBar: Row(
-      //   children: [
-      //     bottomNavigatorBar(
-      //       backgroundColor: AppTheme.bText,
-      //       color: Colors.white70,
-      //       iconColor: Colors.grey,
-      //       title: "Add To Favorite",
-      //       iconData: Icons.favorite_outline,
-      //       // onTap: (){
-
-      //       // }
-      //     ),
-      //     bottomNavigatorBar(
-      //       backgroundColor: AppTheme.secondaryColor,
-      //       color: Colors.black,
-      //       iconColor: Colors.white,
-      //       title: "Add To Cart",
-      //       iconData: Icons.shopping_cart_outlined,
-      //       // onTap: (){
-
-      //       // }
-      //     ),
-      //   ],
-      // ),
-      // appBar: AppBar(
-      //   backgroundColor: AppTheme.secondaryColor,
-      //   iconTheme: const IconThemeData(color: AppTheme.bText),
-      //   title: const Text(
-      //     "Food overview",
-      //     style: TextStyle(color: AppTheme.bText),
-      //   ),
-      //   centerTitle: true,
-      // ),
       body: Column(
         children: [
           CustomAppBar(
@@ -199,14 +126,21 @@ class _RestaurantFoodDetailsPageState extends State<RestaurantFoodDetailsPage> {
               children: [
                 Column(
                   children: [
-                    FloatingActionButton.extended(
-                      backgroundColor: AppTheme.bText,
-                      onPressed: () {},
-                      isExtended: true,
-                      label: const Row(
+                    ElevatedButton(
+                      onPressed: () {
+                        // Add your button click logic here
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppTheme.bText,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                      ),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(
-                            Icons.favorite_outline,
+                            Icons.favorite_border_outlined,
                             color: AppTheme.secondaryColor,
                             size: 30,
                           ),
@@ -214,8 +148,9 @@ class _RestaurantFoodDetailsPageState extends State<RestaurantFoodDetailsPage> {
                           Text(
                             'Add to favorite',
                             style: TextStyle(
-                                color: AppTheme.secondaryColor,
-                                fontWeight: FontWeight.bold),
+                              color: AppTheme.secondaryColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -224,11 +159,18 @@ class _RestaurantFoodDetailsPageState extends State<RestaurantFoodDetailsPage> {
                 ),
                 Column(
                   children: [
-                    FloatingActionButton.extended(
-                      backgroundColor: AppTheme.secondaryColor,
-                      onPressed: () {},
-                      isExtended: true,
-                      label: const Row(
+                    ElevatedButton(
+                      onPressed: () {
+                        // Add your button click logic here
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppTheme.secondaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                      ),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(
                             Icons.shopping_cart_outlined,
@@ -239,8 +181,9 @@ class _RestaurantFoodDetailsPageState extends State<RestaurantFoodDetailsPage> {
                           Text(
                             'Add to cart',
                             style: TextStyle(
-                                color: AppTheme.bText,
-                                fontWeight: FontWeight.bold),
+                              color: AppTheme.bText,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -249,7 +192,7 @@ class _RestaurantFoodDetailsPageState extends State<RestaurantFoodDetailsPage> {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
