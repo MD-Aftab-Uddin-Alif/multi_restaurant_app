@@ -32,23 +32,34 @@ class _ViewAllRestaurantFoodPageState extends State<ViewAllRestaurantFoodPage> {
       ),
       body: Padding(
         padding: EdgeInsets.all(AppSize.pTen),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisExtent: 230,
-            childAspectRatio: 0.8,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-          ),
-          itemCount: homeCtrl.restaurantFoodList.length,
-          itemBuilder: (BuildContext context, int index) {
-            return RestaurantFoodContainerWidget(
-              restaurantFood: homeCtrl.restaurantFoodList[index],
-              route: RestaurantFoodDetailsRoutes.restaurantFoodDetails,
-            );
-          },
-        ),
+        child: ListView.separated(
+            padding: EdgeInsets.zero,
+            itemBuilder: (context, index) => RestaurantFoodContainerWidget(
+                  restaurantFood: homeCtrl.restaurantFoodList[index],
+                  route: RestaurantFoodDetailsRoutes.restaurantFoodDetails,
+                ),
+            separatorBuilder: (_, index) => const SizedBox(
+                  height: 15,
+                ),
+            itemCount: homeCtrl.restaurantFoodList.length),
       ),
     );
   }
 }
+
+// GridView.builder(
+        //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        //     crossAxisCount: 2,
+        //     mainAxisExtent: 230,
+        //     childAspectRatio: 0.8,
+        //     crossAxisSpacing: 10,
+        //     mainAxisSpacing: 10,
+        //   ),
+        //   itemCount: homeCtrl.restaurantFoodList.length,
+        //   itemBuilder: (BuildContext context, int index) {
+        //     return RestaurantFoodContainerWidget(
+        //       restaurantFood: homeCtrl.restaurantFoodList[index],
+        //       route: RestaurantFoodDetailsRoutes.restaurantFoodDetails,
+        //     );
+        //   },
+        // ),
